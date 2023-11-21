@@ -2,8 +2,8 @@
 
 function stringLength(string $string) 
 {
-    $taille = strlen($string);
-    if($taille > 9)
+    $taille = mb_strlen($string);
+    if($taille >= 9)
     {
         return true;
     }
@@ -15,10 +15,10 @@ function stringLength(string $string)
 
 function passwordCheck(string $string)
 {
- if(stringLength($string) == false){
+  if(stringLength($string) == false){
     return false;
- }
- if (!preg_match('/[0-9]/', $string)) {
+  }
+  if (!preg_match('/[0-9]/', $string)) {
     return false;
   }
   if (!preg_match('/[A-Z]/', $string) || !preg_match('/[a-z]/', $string)) {
@@ -36,17 +36,22 @@ $users = [
   'admin' => '1234_Azer',
  ];
 
-function userLogin(string $nom, string $mdp, array $users)
+function userLogin(string $nom, string $mdp, array $utilisateur)
 {
   if(passwordCheck($mdp) == true) {
-    if($nom == $users[0] && $mdp == $users[1]) {
-      return true;
+    echo "$nom OK";
+    foreach($utilisateur as $key => $value){
+      if($nom == $key && $mdp == $value){
+        return true;
+      }
     }
+  }
+  return false;
   }
 
  
   
-}
+
 
 var_dump(stringLength("MotDePasseLong"));
 echo "<br>";
@@ -54,6 +59,6 @@ var_dump(stringLength("azer"));
 echo "<br>";
 var_dump(passwordCheck("MotDePasse1Long$"));
 echo "<br>";
-var_dump(userLogin("joe", "Azer1234", $users));
+var_dump(userLogin("joe", "Azer1234!", $users));
 echo "<br>";
-var_dump(userLogin("joe", "Azer-4321", $users));
+var_dump(userLogin("jack", "Azer-4321", $users));
