@@ -30,8 +30,30 @@ function passwordCheck(string $string)
   return true;
 }
 
+$users = [
+  'joe' => 'Azer1234!', 
+  'jack' => 'Azer-4321', 
+  'admin' => '1234_Azer',
+ ];
+
+function userLogin(string $nom, string $mdp, array $users)
+{
+  if(passwordCheck($mdp) == true) {
+    if($nom == $users[0] && $mdp == $users[1]) {
+      return true;
+    }
+  }
+
+ 
+  
+}
+
 var_dump(stringLength("MotDePasseLong"));
 echo "<br>";
 var_dump(stringLength("azer"));
 echo "<br>";
 var_dump(passwordCheck("MotDePasse1Long$"));
+echo "<br>";
+var_dump(userLogin("joe", "Azer1234", $users));
+echo "<br>";
+var_dump(userLogin("joe", "Azer-4321", $users));
