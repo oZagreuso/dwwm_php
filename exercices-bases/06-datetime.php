@@ -6,28 +6,7 @@ function getToday()
     $today = date("d/m/Y", $timestamp);   
     return $today;
 }
-/*
-function getTimeLeft(string $date): string
-{
-    $dateActuelle = new DateTime();
-    $dateDonnee = DateTime::createFromFormat('d/m/Y', $date);
- 
-    if (!$dateDonnee) {
-        return 'Format de date invalide';
-    }
- 
-    $intervalle = $dateDonnee ->diff($dateActuelle) ; 
- 
-    if ($dateDonnee < $dateActuelle) {
- 
-        return $intervalle ->format('%R%a jours %H heures %I minutes'); 
-    } elseif ($dateDonnee > $dateActuelle) {
- 
-        return $intervalle ->format('%R%a jours %H heures %I minutes'); 
-    } else {
-        return "Aujourd'hui";
-    }
-}*/
+
 
 function getTimeLeft($date)
 {
