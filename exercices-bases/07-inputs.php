@@ -49,10 +49,6 @@ function userLogin(string $nom, string $mdp, array $utilisateur)
   return false;
   }
 
- 
-  
-
-
 var_dump(stringLength("MotDePasseLong"));
 echo "<br>";
 var_dump(stringLength("azer"));
