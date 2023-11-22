@@ -18,5 +18,7 @@ function helloWorld() : void
 
 
 helloWorld();
+echo "<br>";
 echo hello("Mike");
+echo "<br>";
 echo hello("");
