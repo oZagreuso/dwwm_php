@@ -6,7 +6,7 @@ class Moteur
     public $mVMax;
 
 
-    public function __construct($marque, $mVMax)
+    public function __construct(string $marque, float $mVMax)
     {
         $this->marque = $marque;
         $this->mVMax = $mVMax;
