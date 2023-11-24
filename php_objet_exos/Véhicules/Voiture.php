@@ -5,23 +5,24 @@ class Voiture
     protected $marque;
     protected $poids;
     public $vitesseMax;
-    public $moteur;
+    protected Moteur $moteur;
+    
 
 
-    public function __construct(string $marque, int $poids, float $mVMax, string $mMarque)
+    public function __construct(string $marque, int $poids, Moteur $moteur)
     {
         $this->marque = $marque;
         $this->poids = $poids;
-        $this->moteur = new Moteur($mMarque, $mVMax);
-    }   
- 
+        $this->moteur = $moteur;
+     
+    }
 
-    public function getMarque()
+    public function getMarque(): string
     {
         return $this->marque;
     }
 
-    public function getPoids()
+    public function getPoids(): int
     {
         return $this->poids;
     }
@@ -29,15 +30,18 @@ class Voiture
     public function getMoteur()
     {
         return $this->moteur;
-    }
-
-    public function getVitesseMax()
-    {        
-            $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (3 / 100));
-            return $this->vitesseMax;            
+    }   
+   
+    public function getVitesseMax(): float
+    {      
+                   $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (3 / 100));
+            return $this->vitesseMax;   
+                 
     }
 }
 
-$voiture = new Voiture('fiat', 800, 140, 'dacia');
+$voiture = new Voiture('fiat', 800, new Moteur('Lancia', 180));
 $voiture->getVitesseMax();
 var_dump($voiture);
+echo "<br>";
+

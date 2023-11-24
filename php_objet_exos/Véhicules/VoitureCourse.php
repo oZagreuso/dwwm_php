@@ -1,32 +1,46 @@
 <?php
-require('Moteur.php');
-require('Voiture.php');
+// require_once('Moteur.php');
+require_once('Voiture.php');
 class VoitureCourse extends Voiture
 {
-    protected $marque;
+    /*protected $marque;
     protected $poids;
-    public $moteur;
-    public $vitesseMax;
+    public $mMarque;
+    public $vitesseMax;*/
+    // public $estDeCourse = true;
+    //public $monMoteur;
 
 
-    public function __construct(string $marque, int $poids, float $mVMax, string $mMarque)
+
+    public function __construct(string $marque, int $poids, Moteur $moteur)
     {
-        parent::__construct(string $marque, int $poids, float $mVMax, string $mMarque);
+        parent::__construct($marque, $poids, $moteur);
         /*$this->marque = $marque;
         $this->poids = $poids;
-        $this->mMarque = $moteur->marque;*/
-    }   
+        $this->mMarque = $mMarque;*/
+        //$this->monMoteur = $this->$moteur;   
 
-    public function setVitesseMax()
-    {
-        if($marque == $mMarque){
-            $vitesseMax = $mVMax - ($poids * 5 / 100);
-            return $vitesseMax;
+    }     
+        function moteurValide()
+        {
+            if($this->marque == $this->moteur->mMarque){
+                return true;
+            }else{
+               throw new Exception('Moteur et Voiture incompatibles');
+            }
         }
-        else {
-            throw new ErrorException();
+
+        function newVitesseMax()
+        {
+            if($this->moteurValide()){
+                $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (5 / 100)); 
+                return $this->vitesseMax;
+            
         }
-      
-    }
+
+        }
 
 }
+$voitureCourse = new VoitureCourse('fiat', 800, new Moteur('fiat', 180));
+$voitureCourse->getVitesseMax();
+var_dump($voitureCourse);

@@ -2,19 +2,19 @@
 
 class Moteur
 {
-    protected $marque;
+    public $mMarque;
     public $mVMax;
 
 
-    public function __construct(string $marque, float $mVMax)
+    public function __construct(string $mMarque, float $mVMax)
     {
-        $this->marque = $marque;
+        $this->mMarque = $mMarque;
         $this->mVMax = $mVMax;
     }   
 
     public function getMarque()
     {
-        return $this->marque;
+        return $this->mMarque;
     }
     
     public function getMVMax()
