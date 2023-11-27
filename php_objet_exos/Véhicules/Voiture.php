@@ -5,9 +5,7 @@ class Voiture
     protected $marque;
     protected $poids;
     public $vitesseMax;
-    protected Moteur $moteur;
-    
-
+    protected Moteur $moteur;   
 
     public function __construct(string $marque, int $poids, Moteur $moteur)
     {
@@ -47,6 +45,13 @@ class Voiture
            throw new Exception('Moteur et Voiture incompatibles');
         }
     }
+
+    function voitureValide()
+    {
+        if($this->marque != $this->moteur->mMarque){
+            throw new Exception('Problème moteur!');
+        }
+    }   
 }
 
 $voiture = new Voiture('fiat', 800, new Moteur('Lancia', 180));
