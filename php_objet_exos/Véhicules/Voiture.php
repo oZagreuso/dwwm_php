@@ -38,6 +38,15 @@ class Voiture
             return $this->vitesseMax;   
                  
     }
+
+    function moteurValide()
+    {
+        if($this->marque == $this->moteur->mMarque){
+            return true;
+        }else{
+           throw new Exception('Moteur et Voiture incompatibles');
+        }
+    }
 }
 
 $voiture = new Voiture('fiat', 800, new Moteur('Lancia', 180));
