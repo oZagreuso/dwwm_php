@@ -45,11 +45,8 @@ class Voiture
         }
         else{
             throw new Exception('Problème moteur!');
-        }
-        
-    }     
-
-    
+        }        
+    }   
 }
 
 

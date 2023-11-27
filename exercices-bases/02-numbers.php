@@ -16,7 +16,8 @@ function getMulti(float $a, float $b): float
     return round($result, $precision);
 }
 
-function getDiv(int $a, int $b) {
+function getDiv(int $a, int $b) 
+{
     if ($b == 0) {
         return 0;
     } else {
