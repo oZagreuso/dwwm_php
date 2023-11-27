@@ -32,27 +32,25 @@ class Voiture
    
     public function getVitesseMax(): float
     {      
-                   $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (3 / 100));
+                   $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (8 / 100));
             return $this->vitesseMax;   
                  
-    }
-
-    function moteurValide()
-    {
-        if($this->marque == $this->moteur->mMarque){
-            return true;
-        }else{
-           throw new Exception('Moteur et Voiture incompatibles');
-        }
-    }
+    }   
 
     function voitureValide()
     {
-        if($this->marque != $this->moteur->mMarque){
+        if($this->marque == $this->moteur->mMarque){
+            return true;
+        }
+        else{
             throw new Exception('Problème moteur!');
         }
-    }   
+        
+    }     
+
+    
 }
+
 
 $voiture = new Voiture('fiat', 800, new Moteur('Lancia', 180));
 $voiture->getVitesseMax();

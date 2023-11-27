@@ -5,24 +5,37 @@ class VoitureCourse extends Voiture
 {
 
     public function __construct(string $marque, int $poids, Moteur $moteur)
-    {         
-        parent::__construct($marque, $poids, $moteur);
+    {                     
         
-        $this->voitureValide();    
-
-    }     
+            parent::__construct($marque, $poids, $moteur);
+            $this->voitureValide();       
+    }
+       
         
     function getVitesseMax(): float
     {
-            $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (5 / 100)); 
+            $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (4 / 100)); 
             return $this->vitesseMax;
-    }      
-
+    }     
+    
 }
 
-
-$voitureCourse = new VoitureCourse('fiat', 800, new Moteur('fiat', 180));
+// $voitureCourse = new VoitureCourse('fiat', 800, new Moteur('fiat', 180));
 echo "<br>";
-$voitureCourse = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
-$voitureCourse->getVitesseMax();
-var_dump($voitureCourse);
+// $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
+// $voitureCourse->getVitesseMax();
+echo "<br>";
+// $voitureCourse2->getVitesseMax();
+echo "<br>";
+// var_dump($voitureCourse);
+// var_dump($voitureCourse2);
+// $voitureCourse = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
+try{
+    $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
+}
+
+catch(Exception $e){
+    echo 'Construction failed!';
+}
+
+// var_export($voitureCourse);
