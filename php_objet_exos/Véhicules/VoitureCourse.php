@@ -5,9 +5,10 @@ class VoitureCourse extends Voiture
 {
 
     public function __construct(string $marque, int $poids, Moteur $moteur)
-    {                     
+    {                    
         
             parent::__construct($marque, $poids, $moteur);
+
             $this->voitureValide();       
     }
        

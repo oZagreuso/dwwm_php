@@ -12,6 +12,7 @@ class Voiture
         $this->marque = $marque;
         $this->poids = $poids;
         $this->moteur = $moteur;
+        $this->vitesseMax = $this->getVitesseMax();
      
     }
 
