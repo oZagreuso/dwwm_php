@@ -21,15 +21,16 @@ class VoitureCourse extends Voiture
 }
 
 // $voitureCourse = new VoitureCourse('fiat', 800, new Moteur('fiat', 180));
-echo "<br>";
+
 // $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
 // $voitureCourse->getVitesseMax();
-echo "<br>";
+
 // $voitureCourse2->getVitesseMax();
-echo "<br>";
+
 // var_dump($voitureCourse);
 // var_dump($voitureCourse2);
 // $voitureCourse = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
+echo "<br>";
 try{
     $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
 }
@@ -37,5 +38,6 @@ try{
 catch(Exception $e){
     echo 'Construction failed!';
 }
-
+echo "<br>";
+var_dump($voitureCourse2);
 // var_export($voitureCourse);
