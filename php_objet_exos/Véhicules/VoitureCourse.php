@@ -13,7 +13,7 @@ class VoitureCourse extends Voiture
     }
        
         
-    function getVitesseMax(): float
+    public function getVitesseMax(): float
     {
             $this->vitesseMax = $this->moteur->mVMax - ($this->poids * (4 / 100)); 
             return $this->vitesseMax;
@@ -33,12 +33,17 @@ class VoitureCourse extends Voiture
 // $voitureCourse = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
 echo "<br>";
 try{
-    $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('lancia', 180));
+    $voitureCourse2 = new VoitureCourse('fiat', 800, new Moteur('fiat', 180));
 }
 
 catch(Exception $e){
     echo 'Construction failed!';
 }
 echo "<br>";
-var_dump($voitureCourse2);
+//var_dump($voitureCourse2);
 // var_export($voitureCourse);
+$vitesse = $voitureCourse2->getVitesseMax();
+echo $vitesse;
+
+$marque = $voitureCourse2->getMarque();
+echo $marque;

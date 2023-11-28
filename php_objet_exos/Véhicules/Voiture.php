@@ -38,7 +38,7 @@ class Voiture
                  
     }   
 
-    function voitureValide()
+    public function voitureValide()
     {
         if($this->marque == $this->moteur->mMarque){
             return true;

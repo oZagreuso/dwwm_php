@@ -12,7 +12,7 @@ class Client extends Personne
     private $adresse;
     
 
-    public function __construct($dateNaiss, string $nom, string $prenom, int $id, int $numeroRue, string $nomRue, int $cp, string $commune)
+    public function __construct(string $dateNaiss, string $nom, string $prenom, int $id, int $numeroRue, string $nomRue, int $cp, string $commune)
     {                  
         parent::__construct($dateNaiss, $nom, $prenom);  
             $this->id = $id;
@@ -20,8 +20,7 @@ class Client extends Personne
             $this->nomRue = $nomRue;
             $this->cp = $cp;
             $this->commune =$commune;
-            $this->adresse = $this-> setAdresse();
-           
+            $this->adresse = $this-> setAdresse();           
      
     }
 
@@ -58,8 +57,8 @@ class Client extends Personne
        
 }
 echo "<br>";
-$clientSamba = new Client("2019-09-29", "Bg","Samba", 155, 15, "d'Obernai", 6700, "Strasbourg");
+$clientSamba = new Client("2000-09-29", "Bg","Samba", 155, 15, "d'Obernai", 6700, "Strasbourg");
 echo "<br>";
 var_dump($clientSamba);
 echo "<br>";
-$clientSamba->$age;
+

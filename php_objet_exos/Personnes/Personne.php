@@ -7,7 +7,7 @@ class Personne
     private $prenom;
     private $dateNaiss;
 
-public function __construct( $dateNaiss, string $nom, string $prenom)
+public function __construct(string $dateNaiss, string $nom, string $prenom)
 {  
     $this->dateNaiss = $dateNaiss;
     $this->nom = $nom;
@@ -45,7 +45,7 @@ public function getAge(){
 
 }
 
-$persNatana = new Personne("2019-09-29", "Robson","Natana");
+$persNatana = new Personne("2010-09-29", "Robson","Natana");
 var_dump($persNatana);
 echo "<br>";
 var_dump($persNatana->getAge());
