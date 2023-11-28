@@ -29,7 +29,7 @@ class Intervenant extends Personne
 
     public function getCharges()
     {
-        if($this->getAge() < 55)
+        if($this->setAge() < 55)
         {
             $this->charges = ($this->salaire * 20 / 100) + ($this->autresRevenus * 15 / 100);
          

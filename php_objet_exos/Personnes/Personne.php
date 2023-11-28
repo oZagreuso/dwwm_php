@@ -12,7 +12,7 @@ public function __construct(string $dateNaiss, string $nom, string $prenom)
     $this->dateNaiss = $dateNaiss;
     $this->nom = $nom;
     $this->prenom = $prenom;
-    $this->age = $this->getAge();
+    $this->age = $this->setAge();
   
  }
 
@@ -29,7 +29,7 @@ public function getPrenom(){
     return $this->prenom;
 }
 
-public function getAge(){
+public function setAge(){
     $timestamp = strtotime($this->dateNaiss);    
     $now = time();
     $diff = abs($timestamp - $now);  
@@ -37,15 +37,9 @@ public function getAge(){
     // $year = $this->age;
     return $this->age;
 }
-
-
-
-
-
-
 }
 
 $persNatana = new Personne("2010-09-29", "Robson","Natana");
 var_dump($persNatana);
 echo "<br>";
-var_dump($persNatana->getAge());
+var_dump($persNatana->setAge());

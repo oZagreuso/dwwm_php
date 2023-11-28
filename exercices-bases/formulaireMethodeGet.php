@@ -21,7 +21,8 @@
     <?php
         // http://localhost/dwwm_php/exercices-bases/formulaire.php?nb1=21&nb2=2
         $total = $_GET["nb1"] + $_GET["nb2"];
-        echo "<p>To tal : $total</p>";
+        echo "<p>Total : $total</p>";
+        var_dump($total);
     ?>
     
 </body>
