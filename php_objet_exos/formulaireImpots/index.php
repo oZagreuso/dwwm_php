@@ -11,14 +11,14 @@
 <body>
     <main>
         <h1>Formulaire de calcul de l'impôt</h1>
-        <form>
+        <form action="resultatImpot.php" method="POST">
             <div>
                 <label for="nom">Nom</label>
-                <input type="text" id="name" name="nom">
+                <input type="text" id="nom" name="nom">
             </div>
             <div>
                 <label for="revenu">Revenus</label>
-                <input type="number" id="salary" name="revenu">
+                <input type="number" id="revenu" name="revenu">
             </div>
             <div>
                 <button type="submit">Ok</button>
