@@ -1,0 +1,32 @@
+main {
+    background-color: darkgrey;
+}
+
+
+
+h1 {
+    text-align: center;
+    color:firebrick;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.form {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+   
+}
+
+div {
+    padding-left: 20px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+
