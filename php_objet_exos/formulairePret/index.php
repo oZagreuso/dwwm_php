@@ -4,7 +4,8 @@
 if( !empty($_POST['capital']) && !empty($_POST['taux'])  && !empty($_POST["duree"]))
 {   
             
-    $result =calculMensualite($_POST['capital'],$_POST['taux'],$_POST["duree"] );
+    $result = calculMensualite($_POST['capital'],$_POST['taux'],$_POST["duree"] );
+    $resultB = calculAmortissement($_POST['capital'],$_POST['taux'],$_POST["duree"]);
 
 }
 else {
@@ -51,9 +52,30 @@ else {
                 <input type="text" readonly id="mensualite" name="mensualite" value="<?php echo $result ; ?>"> 
             </div>
         </section>
-        </form> 
-
-
+        </form> <?php
+        $tableau = [];
+echo "<table>";
+echo "<thead>";
+echo "<tr>";
+echo "<th>Mois</th>";
+echo "<th>Capital emprunté</th>";
+echo "<th>Capital restant dû</th>";
+echo "<th>Intérêts</th>";
+echo "<th>Amortissement</th>";
+echo "</tr>";
+echo "</thead>";
+echo "<tbody>";
+foreach($tableau as $ligne) {
+    echo "<tr>";
+    echo "<td>" . $ligne["mois"] . "</td>";
+    echo "<td>" . number_format($ligne["capital_emprunte"], 2) . "</td>";
+    echo "<td>" . number_format($ligne["capital_restant_du"], 2) . "</td>";
+    echo "<td>" . number_format($ligne["interets"], 2) . "</td>";
+    echo "<td>" . number_format($ligne["amortissement"], 2) . "</td>";
+    echo "</tr>";
+}
+echo "</tbody>";
+echo "</table>"; ?>
     </main>
     
 </body>
