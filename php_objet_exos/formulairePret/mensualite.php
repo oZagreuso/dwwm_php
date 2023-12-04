@@ -1,4 +1,5 @@
 <?php
+require_once 'index.php';
 
 
 
@@ -12,39 +13,53 @@ function calculMensualite(float $capital, float $tauxAnnuel, int $nbAnneesRemb)
 
 }
 
+
 function calculAmortissement(float $capital, float $tauxAnnuel, int $nbAnneesRemb)
 {
-    $tableau = [];
     $mensualite = calculMensualite($capital, $tauxAnnuel, $nbAnneesRemb);
-    for ($i = 1; $i <= $nbAnneesRemb; $i++) {
-    
+
+    $tableau = array();
+    $capitalRestantDu = $capital;
+        
+    for ($i = 1; $i <= $nbAnneesRemb; $i++) {   
    
-    $interets = $capital * $tauxAnnuel;
-    $amortissement = $mensualite - $interets;
-    $capitalRestantDu = $capital - $amortissement;
-    return $capitalRestantDu;
+        $interets = $capital * $tauxAnnuel / 12;
+        $amortissement = $mensualite - $interets;
+        $capitalRestantDu = $capitalRestantDu - $amortissement;
+          
+        echo '<table border="1">
+        <tr>
+        <th>Numéro de mois</th>
+        <th>Intérêt</th>
+        <th>Partie Amortissement</th>
+        <th>Capital restant</th>
+        </tr>';
 
-    $tableau[] = 
-        [
+        $tableau = array
+        (
             "mois" => $i,
-            "capital_emprunte" => $capital,
-            "capital_restant_du" => $capitalRestantDu,
-            "interets" => $interets,
-            "amortissement" => $amortissement, 
-        ];      
-    }
-    
-}
+            "amortissement" => $amortissement,
+            "interets" => $capitalRestantDu,
+            "capitalRestantDu" => $interets,
+           
+        ); 
 
-var_dump($tableau);
+            foreach ($tableau as $ligne): ?>
+                <tr>
+                    <td><?= $ligne['mois'] ?></td>
+                    <td><?= $ligne['amortissement'] ?></td>
+                    <td><?= $ligne['interets'] ?></td>
+                    <td><?= $ligne['capital_restant_du'] ?></td>
+                </tr>
+                <?php endforeach; 
+            }
+            return $tableau;
+
+    }        
 
 
 
-// $capital = $_POST['capital'];
-// $tauxAnnuel = $_POST['taux'];
-// $nbAnneesRemb = $_POST['duree'];
-// $maMensualite = calculMensualite($capital, $tauxAnnuel, $nbAnneesRemb);
 
-// echo "Votre mensualité est de $maMensualite euros.";
+
 
   
