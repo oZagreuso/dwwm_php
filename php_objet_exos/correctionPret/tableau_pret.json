@@ -1,0 +1,338 @@
+[
+    {
+        "num_mois": 1,
+        "partInteret": 33.33,
+        "partAmortissement": 192,
+        "capital_restant": 10000,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 2,
+        "partInteret": 32.69,
+        "partAmortissement": 193,
+        "capital_restant": 9807.54,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 3,
+        "partInteret": 32.05,
+        "partAmortissement": 194,
+        "capital_restant": 9614.45,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 4,
+        "partInteret": 31.4,
+        "partAmortissement": 194,
+        "capital_restant": 9420.7,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 5,
+        "partInteret": 30.75,
+        "partAmortissement": 195,
+        "capital_restant": 9226.32,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 6,
+        "partInteret": 30.1,
+        "partAmortissement": 196,
+        "capital_restant": 9031.28,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 7,
+        "partInteret": 29.45,
+        "partAmortissement": 196,
+        "capital_restant": 8835.59,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 8,
+        "partInteret": 28.8,
+        "partAmortissement": 197,
+        "capital_restant": 8639.26,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 9,
+        "partInteret": 28.14,
+        "partAmortissement": 198,
+        "capital_restant": 8442.26,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 10,
+        "partInteret": 27.48,
+        "partAmortissement": 198,
+        "capital_restant": 8244.61,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 11,
+        "partInteret": 26.82,
+        "partAmortissement": 199,
+        "capital_restant": 8046.31,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 12,
+        "partInteret": 26.16,
+        "partAmortissement": 200,
+        "capital_restant": 7847.34,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 13,
+        "partInteret": 25.49,
+        "partAmortissement": 200,
+        "capital_restant": 7647.71,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 14,
+        "partInteret": 24.82,
+        "partAmortissement": 201,
+        "capital_restant": 7447.41,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 15,
+        "partInteret": 24.15,
+        "partAmortissement": 202,
+        "capital_restant": 7246.44,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 16,
+        "partInteret": 23.48,
+        "partAmortissement": 202,
+        "capital_restant": 7044.81,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 17,
+        "partInteret": 22.81,
+        "partAmortissement": 203,
+        "capital_restant": 6842.5,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 18,
+        "partInteret": 22.13,
+        "partAmortissement": 204,
+        "capital_restant": 6639.52,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 19,
+        "partInteret": 21.45,
+        "partAmortissement": 204,
+        "capital_restant": 6435.86,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 20,
+        "partInteret": 20.77,
+        "partAmortissement": 205,
+        "capital_restant": 6231.52,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 21,
+        "partInteret": 20.09,
+        "partAmortissement": 206,
+        "capital_restant": 6026.5,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 22,
+        "partInteret": 19.4,
+        "partAmortissement": 206,
+        "capital_restant": 5820.8,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 23,
+        "partInteret": 18.71,
+        "partAmortissement": 207,
+        "capital_restant": 5614.42,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 24,
+        "partInteret": 18.02,
+        "partAmortissement": 208,
+        "capital_restant": 5407.34,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 25,
+        "partInteret": 17.33,
+        "partAmortissement": 208,
+        "capital_restant": 5199.57,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 26,
+        "partInteret": 16.64,
+        "partAmortissement": 209,
+        "capital_restant": 4991.12,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 27,
+        "partInteret": 15.94,
+        "partAmortissement": 210,
+        "capital_restant": 4781.96,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 28,
+        "partInteret": 15.24,
+        "partAmortissement": 211,
+        "capital_restant": 4572.11,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 29,
+        "partInteret": 14.54,
+        "partAmortissement": 211,
+        "capital_restant": 4361.56,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 30,
+        "partInteret": 13.83,
+        "partAmortissement": 212,
+        "capital_restant": 4150.31,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 31,
+        "partInteret": 13.13,
+        "partAmortissement": 213,
+        "capital_restant": 3938.36,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 32,
+        "partInteret": 12.42,
+        "partAmortissement": 213,
+        "capital_restant": 3725.69,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 33,
+        "partInteret": 11.71,
+        "partAmortissement": 214,
+        "capital_restant": 3512.32,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 34,
+        "partInteret": 10.99,
+        "partAmortissement": 215,
+        "capital_restant": 3298.24,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 35,
+        "partInteret": 10.28,
+        "partAmortissement": 216,
+        "capital_restant": 3083.45,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 36,
+        "partInteret": 9.56,
+        "partAmortissement": 216,
+        "capital_restant": 2867.93,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 37,
+        "partInteret": 8.84,
+        "partAmortissement": 217,
+        "capital_restant": 2651.7,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 38,
+        "partInteret": 8.12,
+        "partAmortissement": 218,
+        "capital_restant": 2434.75,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 39,
+        "partInteret": 7.39,
+        "partAmortissement": 218,
+        "capital_restant": 2217.08,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 40,
+        "partInteret": 6.66,
+        "partAmortissement": 219,
+        "capital_restant": 1998.68,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 41,
+        "partInteret": 5.93,
+        "partAmortissement": 220,
+        "capital_restant": 1779.55,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 42,
+        "partInteret": 5.2,
+        "partAmortissement": 221,
+        "capital_restant": 1559.69,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 43,
+        "partInteret": 4.46,
+        "partAmortissement": 221,
+        "capital_restant": 1339.1,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 44,
+        "partInteret": 3.73,
+        "partAmortissement": 222,
+        "capital_restant": 1117.78,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 45,
+        "partInteret": 2.99,
+        "partAmortissement": 223,
+        "capital_restant": 895.71,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 46,
+        "partInteret": 2.24,
+        "partAmortissement": 224,
+        "capital_restant": 672.91,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 47,
+        "partInteret": 1.5,
+        "partAmortissement": 224,
+        "capital_restant": 449.36,
+        "mensualite": 226
+    },
+    {
+        "num_mois": 48,
+        "partInteret": 0.75,
+        "partAmortissement": 225,
+        "capital_restant": 225.07,
+        "mensualite": 226
+    }
+]
