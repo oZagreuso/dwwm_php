@@ -7,8 +7,8 @@ if( !empty($_POST['capital']) && !empty($_POST['taux'])  && !empty($_POST["duree
     // $tableau = array();
             
     $result = calculMensualite($_POST['capital'],$_POST['taux'],$_POST["duree"] );
-    $tableau = calculAmortissement($_POST['capital'],$_POST['taux'],$_POST["duree"]);
-    
+    $tableauGlobal = calculAmortissement($_POST['capital'],$_POST['taux'],$_POST["duree"]);
+    var_dump($tableauGlobal);
 
 }
  else {
@@ -36,11 +36,11 @@ if( !empty($_POST['capital']) && !empty($_POST['taux'])  && !empty($_POST["duree
         <div class="form">
             <div class="capital">
                 <label for="capital">Capital emprunté</label>
-                <input type="text" id="capital" name="capital">
+                <input type="text" id="capital" step="0.01" name="capital">
             </div>
             <div class="taux">
                 <label for="taux">Taux d'intérêt annuel</label>
-                <input type="text" id="taux" name="taux">
+                <input type="text" id="taux" step="0.01" name="taux">
             </div>
             <div class="duree">
                 <label for="duree">Durée de remboursement en années</label>
@@ -60,7 +60,7 @@ if( !empty($_POST['capital']) && !empty($_POST['taux'])  && !empty($_POST["duree
         </form>        
     </main>
     
-    <!-- <table>
+     <table> 
         <thead>
             <tr>
                 <th>Numéro de mois</th>
@@ -69,11 +69,23 @@ if( !empty($_POST['capital']) && !empty($_POST['taux'])  && !empty($_POST["duree
                 <th>Capital restant</th>
             </tr>
         </thead>
-        <tbody> -->
+        <tbody> 
         <?php 
+        // for ($i=0; $i < count($tableauGlobal) ; $i++) { 
+            # code...
+       $tableau = $tableauGlobal;
+    foreach ($tableau as $ligne): ?>
+        <tr>
+            <td><?= $ligne['mois'] ?></td>
+            <td><?= $ligne['amortissement'] ?></td>
+            <td><?= $ligne['interets'] ?></td>
+            <td><?= $ligne['capitalRestantDu'] ?></td>
+        </tr>
+        <?php endforeach; 
+        //  }
     
        
-        echo $tableau;
+        // echo $tableau;
         // $tableau = array();
         // $tableau[] =  calculAmortissement($_POST['capital'],$_POST['taux'],$_POST["duree"]);
         
