@@ -6,7 +6,6 @@ class MyTable
 {
     private string $base;
 
-
     public function __construct(string $base)
     {
         $this->base = $base;
@@ -33,7 +32,7 @@ class MyTable
     {        
         $resultats = $this->searchInBdd();
         echo '<table border="1">';
-        echo '<tr>';
+        echo '<tr border="1">';
         echo '<th>id</th>';
         echo '<th>nom</th>';
         echo '<th>adresse</th>';
@@ -45,7 +44,7 @@ class MyTable
       $resultats = $this->searchInBdd();
       foreach($resultats as $row)
       {
-        echo '<tr>';
+        echo '<tr border="1">';
         echo '<td>' . $row['id'] . '</td>';
         echo '<td>' . $row['nom'] . '</td>';
         echo '<td>' . $row['adresse'] . '</td>';
