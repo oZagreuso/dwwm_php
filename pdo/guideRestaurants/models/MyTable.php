@@ -5,6 +5,8 @@
 class MyTable
 {
     private string $base;
+    private int $numeroCol;
+    private $nomCol;
 
     public function __construct(string $base)
     {
@@ -56,8 +58,17 @@ class MyTable
        
       }
     }
+
+    private function infoTable($resultats)
+    {
+      $resultats = $this->searchInBdd();
+      $this->numeroCol = array_keys($resultats[0]);
+      $this->nomCol = array_keys($numeroCol);
+    }
+
+    
+    
         
          
     
 }
-
