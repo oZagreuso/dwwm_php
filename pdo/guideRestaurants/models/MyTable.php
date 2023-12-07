@@ -4,32 +4,80 @@
 
 class MyTable
 {
-    private string $base;
-    private int $numeroCol;
-    private $nomCol;
+    private string $table;
+    private string $primaryKeyColName;
+    private PDO $connection;
 
-    public function __construct(string $base)
+    public function __construct(string $_table)
     {
-        $this->base = $base;
+        $this->table = $_table;
+        $this->connection = Connexion::getInstance();
     }
 
-    public function searchInBdd()
+   protected function searchInBdd() : array
     {
-        $bdd = [];
-        try {
-            $maConnection = Connexion::getInstance();
-            $request = "SELECT * FROM " . $this->base;
-            $state = $maConnection->prepare($request);
+            $bdd = [];  
+            $request = "SELECT * FROM " . $this->table;
+            $state = $this->connection->prepare($request);
             $state->execute();
-            $bdd = $state->fetchAll();
-        } catch (PDOException $e) {
-            die("!! data not found !!" . $e ->getMessage());
-        }   
+            $bdd = $state->fetchAll();     
 
         return $bdd;
 
     }
 
+    public function rendreHTML() : string
+    {
+      $maChaine = "<table class='table table-danger table-hover'><thead><tr>";
+      $mesData = $this->searchInBdd();
+      // création des cellules titre (th)
+      foreach ($mesData[0] as $key => $value) 
+      {
+        $maChaine .= "<th>" . $key . "</th>";
+        
+      }
+      $maChaine .= "</tr></thead><tbody>";
+
+
+      for ($i=0; $i < count($mesData); $i++) 
+      { 
+
+        $ligne = $mesData[$i];
+        $maChaine .= "<tr>";
+
+          foreach ($ligne as $key => $value) 
+          {
+            $maChaine.= "<td>" . $value . "</td>"; //créer autant de champs que nécessaire
+          }
+
+        $maChaine .= "</tr>";
+      }
+      
+      $maChaine .= "</tbody></table>";
+      return $maChaine;
+    }
+}
+  
+
+/*
+    function getPrimaryKeyColumn() 
+    {
+      $mesData = $this->searchInBdd();
+      foreach ($mesData as $column) 
+      {
+          if ($column->flags & MYSQLI_PRI_KEY_FLAG) 
+          {
+              return $column->name;
+          }
+      }
+  
+      return null;
+    }
+  
+  }
+*/
+
+/*
     public function rendreHTML() 
     {        
         $resultats = $this->searchInBdd();
@@ -57,18 +105,15 @@ class MyTable
         echo '</tr>';
        
       }
-    }
+      */
+    
 
-    private function infoTable($resultats)
-    {
-      $resultats = $this->searchInBdd();
-      $this->numeroCol = array_keys($resultats[0]);
-      $this->nomCol = array_keys($numeroCol);
-    }
+ 
+   
+    
 
     
     
         
          
     
-}
