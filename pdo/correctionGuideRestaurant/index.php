@@ -15,7 +15,7 @@
     $mesDonnees = $maTable->readTable();
     //  var_dump($mesDonnees);
 
-
+/*
     echo "<table class='table table-dark table-hover'><thead><tr>";
     foreach ($mesDonnees[0] as $value) {
 
@@ -31,7 +31,7 @@
         }
         echo "</tr>";
     }
-    echo "</tbody></table>";
+    echo "</tbody></table>";*/
 
     ?>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

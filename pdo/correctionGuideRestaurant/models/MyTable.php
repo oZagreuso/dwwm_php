@@ -47,7 +47,7 @@ class MyTable
         $requete = "SELECT * from " . $this->table;
         // préparer la requète
         $state = $this->connexion->prepare($requete);
-        // Exécuter la requète
+        // exécuter la requète
         $state->execute();
         $this->nbCol = $state->columnCount();
         echo $this->nbCol . "<br/>";
@@ -58,5 +58,40 @@ class MyTable
         }
 
         return $fieldsNames;
+    }
+
+    public function rendreHTML() 
+    {
+        $myArray = [];
+        $requete = "SELECT * from " . $this->table;
+        // préparer la requète
+        $state = $this->connexion->prepare($requete);
+        // exécuter la requète
+        $state->execute();
+        // associer les données récupérées au tableau
+        $myArray = $state->fetchAll();
+
+        $myString = "<table class='table table-light table-hover'><thead><tr>";
+        $myString = "<th>Modifier</th><th>Supprimer</th>";
+        foreach($myArray[0] as $key => $value)
+        {
+            $myString .= "<th> $key </th>";
+        }
+        $myString .= "</tr></thead><tbody>";
+        for ($i=0; $i < count($myArray) ; $i++) 
+        { 
+                // modifier en GET
+            $myString .= "<td><a href='detail.php?id=" . $myArray[$i]['id'] . "' target='_blank'>Modifier</a>";
+                // supprimer en POST
+            $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' value='" . $myArray[$i]['id'] . "'><input type='submit' value = 'Supprimer' ></form></td>";
+
+            foreach($myArray[$i] as $key => $value)
+            {
+                $myString .= "<td>" . $value . "</td>";
+            }
+
+            $myString .= "</tr>";
+        }
+        $myString .= "</tbody></table>";
     }
 }
