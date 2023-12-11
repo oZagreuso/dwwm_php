@@ -25,25 +25,7 @@ class Benevoles
 
     public function setTable():string
     {
-        /////
-        if (isset($_POST['id'])) 
-        {
-            $idToDelete = $_POST['id'];
-            $this->deleteEntry($idToDelete);
-            echo "<div class='alert alert-success'>La ligne a été supprimée avec succès.</div>";
-         }
-        /*
-        $idToDelete = $_POST['id'];
-        if (isset($idToDelete)) 
-        {
-            $request = "DELETE FROM " . $this->table . " WHERE id = :id";
-            $state = $this->connexion->prepare($request);
-            $state->bindParam(':id', $idToDelete);
-            $state->execute();
-            echo "<div class='alert alert-success'>La ligne a été supprimée avec succès.</div>";
-        }
-        */
-        /////
+        
 
         $myString = '<table class="table table-success table-striped table-hover"><thead><tr>';
         $myData = $this->searchInDatabase();
@@ -69,26 +51,55 @@ class Benevoles
               $myString .= "<td>" . $value . "</td>"; 
             }            
              // modifier en GET
-             $myString .= "<td><a href='detail.php?id=" . $myData[$i]['id'] . "' target='_blank'>Modifier</a>";
+             $myString .= "<td><a href='detail.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary'>Modifier</a>";
              // supprimer en POST
-                      $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' value='" . $myData[$i]['id'] . "'><input type='submit' value = 'Supprimer' ></form></td>";
+             $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' value='" . $myData[$i]['id'] . "'><input type='submit' class='btn btn-danger' value = 'Supprimer' onclick='deleteEntry()'></form></td>";
+                
           
-           $myString .= "</tr>";
+            $myString .= "</tr>";
            
         }
+
+      
+
         $myString .= "</tbody></table>";
         return $myString;
+
     }
 
-    public function deleteEntry(int $idToDelete): void
-    {
-        $request = "DELETE FROM " . $this->table . " WHERE id = :id";
-        $state = $this->connexion->prepare($request);
-        $state->bindParam(':id', $idToDelete);
-        $state->execute();
+    public function deleteEntry(): void
+    {              
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+         {
+            $id = $_POST['id'];        
+            
+            $request = "DELETE FROM `$this->table` WHERE id = :id";
+            $state = $this->connexion->prepare($request);
+            $state->bindParam(':id', $id);
+            $state->execute();
+            $this->deleteEntry($id);
+            echo "<div class='alert alert-success'>-- Delete Successed --</div>";
+          
+        
+        }    
     }
-
 }
+   
+    
+
+
+    /*
+    $request = "DELETE FROM " . $this->table . " WHERE id = :id";
+    $state = $this->connexion->prepare($request);
+    $state->bindParam(':id', $idToDelete);
+    $state->execute();
+    if (isset($_POST['id'])) 
+    {
+        $idToDelete = $_POST['id'];
+        $this->deleteEntry($idToDelete);
+        echo "<div class='alert alert-success'>-- Delete Successed --</div>";
+     }*/
+
 
  
 

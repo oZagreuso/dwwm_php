@@ -21,14 +21,16 @@
         </div>
         </section>
         <?php 
-            //  include "models/Connexion.php";
+          
              include "models/Benevoles.php";
 
             $table = new Benevoles('bénévoles');
-            echo $table->setTable();
+            echo $table->setTable();            
+         
         
 
         ?>
+        
     </main>
 </body>
 </html>
