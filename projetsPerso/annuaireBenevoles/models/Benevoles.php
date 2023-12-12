@@ -53,13 +53,12 @@ class Benevoles
              // modifier en GET
              $myString .= "<td><a href='detail.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary'>Modifier</a>";
              // supprimer en POST
-             $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' value='" . $myData[$i]['id'] . "'><input type='submit' class='btn btn-danger' value = 'Supprimer' onclick='deleteEntry()'></form></td>";
+             $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' name='deleteLine' value='" . $myData[$i]['id'] . "'><input type='submit' class='btn btn-danger' value = 'Supprimer' onclick='deleteEntry()'></form></td>";
                 
           
             $myString .= "</tr>";
            
         }
-
       
 
         $myString .= "</tbody></table>";
@@ -67,38 +66,40 @@ class Benevoles
 
     }
 
-    public function deleteEntry(): void
-    {              
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-         {
-            $id = $_POST['id'];        
+    public function deleteEntry($id): int
+        {                    
             
             $request = "DELETE FROM `$this->table` WHERE id = :id";
             $state = $this->connexion->prepare($request);
-            $state->bindParam(':id', $id);
+            $state->bindParam(':id', $id, PDO::PARAM_INT);
             $state->execute();
-            $this->deleteEntry($id);
-            echo "<div class='alert alert-success'>-- Delete Successed --</div>";
-          
-        
-        }    
-    }
+            return $state->rowCount();    
+        }
+
+ /*       public function addEntry($data)
+{
+    $request = "INSERT INTO `bénévoles` (`nom`, `prenom`, `numero_tel`, `poste`) VALUES ('" . $data['nom'] . "', '" . $data['prenom'] . "', '" . $data['numero_tel'] . "', '" . $data['poste'] . "')";
+    $stmt = $this->connexion->prepare($request);
+    $stmt->execute();
+    return $this->connexion->lastInsertId();
+}*/
+
+        public function addEntry(string $nom, string $prenom, string $num_tel, string $poste): void
+        {
+            $request = "INSERT INTO" . $this->table . "VALUES (id, ?, ?, ?, ?)";
+            $state = $this->connexion->prepare($request);
+           /* $state->bindParam(':nom', $data['nom'], PDO::PARAM_STR);
+            $state->bindParam(':prenom', $data['prenom'], PDO::PARAM_STR);
+            $state->bindParam(':numero_tel', $data['numero_tel'], PDO::PARAM_STR);
+            $state->bindParam(':poste', $data['poste'], PDO::PARAM_STR);*/
+            $state->execute([$nom, $prenom, $num_tel, $poste]);
+            // return $this->connexion->lastInsertId();
+        }
+
 }
    
     
 
-
-    /*
-    $request = "DELETE FROM " . $this->table . " WHERE id = :id";
-    $state = $this->connexion->prepare($request);
-    $state->bindParam(':id', $idToDelete);
-    $state->execute();
-    if (isset($_POST['id'])) 
-    {
-        $idToDelete = $_POST['id'];
-        $this->deleteEntry($idToDelete);
-        echo "<div class='alert alert-success'>-- Delete Successed --</div>";
-     }*/
 
 
  

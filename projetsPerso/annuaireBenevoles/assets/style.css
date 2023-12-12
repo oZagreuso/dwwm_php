@@ -5,6 +5,10 @@ section {
    
 }
 
+.addVolonteer {
+    background-color: rgb(153, 197, 200);
+}
+
 .title {
     margin-top: 60px;
 
@@ -12,4 +16,10 @@ section {
 
 h1 {
     font-family: Marker Felt, fantasy;
+}
+
+h2 {
+    font-family: Marker Felt, fantasy; 
+    font-weight:300;
+  
 }

@@ -20,17 +20,48 @@
             <image src="./logo/crm_logo.png" alt="logo du CRM";>
         </div>
         </section>
+        <div>
         <?php 
           
              include "models/Benevoles.php";
 
             $table = new Benevoles('bénévoles');
-            echo $table->setTable();            
-         
-        
+            echo $table->setTable();
+
+            if (isset($_POST['deleteLine'])) 
+            {
+                $id = $_POST['deleteLine'];
+                echo $table->deleteEntry(intval($id));
+                echo "<div class='alert alert-success'>-- Delete Successed --</div>"  ;
+                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
+            }
+            
+            if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['num_tel']) && isset($_POST['poste']))
+            {
+                
+                echo $table->addEntry($_POST['nom'], $_POST['prenom'], $_POST['num_tel'], $_POST['poste']);
+                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
+            }
+
 
         ?>
-        
+        </div>
+        <div class="addVolonteer">
+            <h2>Ajouter un bénévole</h1>
+        </div>
+            <form action="" method="POST">
+            <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom">
+                <label for="numero_tel">Numéro de téléphone</label>
+                <input type="text" id="numero_tel" name="numero_tel">
+                <label for="poste">Poste</label>
+                <input type="text" id="poste" name="poste">
+                <button type="submit" class="btn btn-outline-success" name="validate">Valider</button>
+            </div>
+            
     </main>
 </body>
 </html>

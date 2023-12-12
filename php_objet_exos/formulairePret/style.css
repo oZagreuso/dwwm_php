@@ -1,3 +1,4 @@
+
 main {
     background-color: darkgrey;
 }
@@ -29,4 +30,7 @@ section {
     justify-content: center;
 }
 
+.info {
+    display: flex;
+}
 
