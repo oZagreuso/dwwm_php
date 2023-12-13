@@ -36,7 +36,8 @@
                 echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
             }
            
-            if (isset($_POST['validate'])) {
+            if (isset($_POST['validate'])) 
+            {
                 // Récupération des données du formulaire
                 $nom = $_POST['nom'];
                 $prenom = $_POST['prenom'];
@@ -56,6 +57,18 @@
             
              }
 
+             if (isset($_POST['alterNom']))
+             {
+                $nom = $_POST['nom'];
+
+                if ($table->validateNomPrenom($nom))
+                {
+                    echo $table->alterNom($id, $nom);
+                    echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
+                }
+     
+               
+             }
 
         ?>
         </div>
