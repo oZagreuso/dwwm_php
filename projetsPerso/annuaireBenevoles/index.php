@@ -35,13 +35,26 @@
                 echo "<div class='alert alert-success'>-- Delete Successed --</div>"  ;
                 echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
             }
+           
+            if (isset($_POST['validate'])) {
+                // Récupération des données du formulaire
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                $num_tel = $_POST['num_tel'];
+                $poste = $_POST['poste'];
+
+                if ($table->validateNomPrenom($nom) &&  $table->validateNomPrenom($prenom) && $table->validateNumTel($num_tel) && $table->numTelLengthMax($num_tel) && $table->numTelLengthMin($num_tel))
+                {
+                    echo $table->addEntry($nom, $prenom, $num_tel, $poste);
+                    echo "<div class='alert alert-success'>-- Ajout réussi --</div>";
+                    echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
+                }
+                else
+                {
+                    echo "-- Erreur saisie --";
+                }
             
-            if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['num_tel']) && isset($_POST['poste']))
-            {
-                
-                echo $table->addEntry($_POST['nom'], $_POST['prenom'], $_POST['num_tel'], $_POST['poste']);
-                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
-            }
+             }
 
 
         ?>
@@ -49,17 +62,17 @@
         <div class="addVolonteer">
             <h2>Ajouter un bénévole</h1>
         </div>
-            <form action="" method="POST">
+            <form action="<?php  echo $_SERVER['PHP_SELF']; ?>" method="POST">
             <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
                 <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom">
-                <label for="numero_tel">Numéro de téléphone</label>
-                <input type="text" id="numero_tel" name="numero_tel">
+                <input type="text" id="nom" name="nom" placeholder="Obligatoire">
+                <label for="prenom" >Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Obligatoire">
+                <label for="num_tel">Numéro de téléphone</label>
+                <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire">
                 <label for="poste">Poste</label>
                 <input type="text" id="poste" name="poste">
-                <button type="submit" class="btn btn-outline-success" name="validate">Valider</button>
+                <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
             </div>
             
     </main>

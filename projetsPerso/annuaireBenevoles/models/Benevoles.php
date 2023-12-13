@@ -51,7 +51,7 @@ class Benevoles
               $myString .= "<td>" . $value . "</td>"; 
             }            
              // modifier en GET
-             $myString .= "<td><a href='detail.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary'>Modifier</a>";
+             $myString .= "<td><a href='detail.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary' name='alterForm'>Modifier</a>";
              // supprimer en POST
              $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' name='deleteLine' value='" . $myData[$i]['id'] . "'><input type='submit' class='btn btn-danger' value = 'Supprimer' onclick='deleteEntry()'></form></td>";
                 
@@ -67,34 +67,59 @@ class Benevoles
     }
 
     public function deleteEntry($id): int
-        {                    
+    {                    
             
-            $request = "DELETE FROM `$this->table` WHERE id = :id";
-            $state = $this->connexion->prepare($request);
-            $state->bindParam(':id', $id, PDO::PARAM_INT);
-            $state->execute();
-            return $state->rowCount();    
-        }
+        $request = "DELETE FROM `$this->table` WHERE id = :id";
+        $state = $this->connexion->prepare($request);
+        $state->bindParam(':id', $id, PDO::PARAM_INT);
+        $state->execute();
+        return $state->rowCount();    
+    }
 
- /*       public function addEntry($data)
-{
-    $request = "INSERT INTO `bénévoles` (`nom`, `prenom`, `numero_tel`, `poste`) VALUES ('" . $data['nom'] . "', '" . $data['prenom'] . "', '" . $data['numero_tel'] . "', '" . $data['poste'] . "')";
-    $stmt = $this->connexion->prepare($request);
-    $stmt->execute();
-    return $this->connexion->lastInsertId();
-}*/
+    public function addEntry($nom, $prenom, $num_tel, $poste): int
+    {
+        $request = "INSERT INTO `$this->table` (nom, prenom, num_tel, poste) VALUES (:nom, :prenom, :num_tel, :poste)";
+        $state = $this->connexion->prepare($request);
+        $state->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $state->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $state->bindParam(':num_tel', $num_tel, PDO::PARAM_STR);
+        $state->bindParam(':poste', $poste, PDO::PARAM_STR);
+        $state->execute();
+        return $state->rowCount();
+    }
+  
+    public function alterEntry($id, $nom, $prenom, $num_tel, $poste): int
+    {
+        $request = "UPDATE `$this->table` SET nom = :nom, prenom = :prenom, num_tel = :num_tel, poste = :poste WHERE id = :id";
+        $state = $this->connexion->prepare($request);
+        $state->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $state->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $state->bindParam(':num_tel', $num_tel, PDO::PARAM_STR);
+        $state->bindParam(':poste', $poste, PDO::PARAM_STR);
+        $state->bindParam(':id', $id, PDO::PARAM_INT);
+        $state->execute();
+        return $state->rowCount();
+    }
 
-        public function addEntry(string $nom, string $prenom, string $num_tel, string $poste): void
-        {
-            $request = "INSERT INTO" . $this->table . "VALUES (id, ?, ?, ?, ?)";
-            $state = $this->connexion->prepare($request);
-           /* $state->bindParam(':nom', $data['nom'], PDO::PARAM_STR);
-            $state->bindParam(':prenom', $data['prenom'], PDO::PARAM_STR);
-            $state->bindParam(':numero_tel', $data['numero_tel'], PDO::PARAM_STR);
-            $state->bindParam(':poste', $data['poste'], PDO::PARAM_STR);*/
-            $state->execute([$nom, $prenom, $num_tel, $poste]);
-            // return $this->connexion->lastInsertId();
-        }
+    //// REGEX ////
+    public function validateNomPrenom($input)
+    {
+        return preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\'\- ]+$/', $input);
+    }
+
+    public function validateNumTel($input)
+    {
+        return preg_match('/^[0-9()+\- ]+$/', $input);
+    }
+
+    public function numTelLengthMax($input)
+    {
+        return preg_match('/^\d{1,13}$/', $input);
+    }
+
+    function numTelLengthMin($input) {
+        return preg_match('/^\d{10,13}$/', $input);
+     }
 
 }
    
