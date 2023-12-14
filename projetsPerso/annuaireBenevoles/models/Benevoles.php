@@ -51,7 +51,7 @@ class Benevoles
               $myString .= "<td>" . $value . "</td>"; 
             }            
              // modifier en GET
-             $myString .= "<td><a href='./models/alterForm.php? id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary' >Modifier</a>";
+             $myString .= "<td><a href='./alterForm.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary' name='updateLine'>Modifier</a>";
              // supprimer en POST
              $myString .= "<td><form action ='" . $_SERVER['PHP_SELF'] . "' method='POST'><input type='hidden' name='deleteLine' value='" . $myData[$i]['id'] . "'><input type='submit' class='btn btn-danger' value = 'Supprimer' onclick='deleteEntry()'></form></td>";
                 
@@ -88,6 +88,16 @@ class Benevoles
         return $state->rowCount();
     }
 
+    public function getEntryById($id) : array
+    {
+        $request = "SELECT * FROM bénévoles WHERE id = :id";
+        $state = $this->connexion->prepare($request);
+        $state->bindParam(':id', $id);
+        $state->execute();
+        $line = $state->fetch();
+        return $line;
+    }
+/*
     public function alterNom($id, $nom): int
     {
         $request = "UPDATE `$this->table` SET nom = :nom  WHERE id = :id";
@@ -96,20 +106,35 @@ class Benevoles
         $state->bindParam(':id', $id, PDO::PARAM_INT);
         $state->execute();
         return $state->rowCount();
-    }
-  
-   /* public function alterEntry($id, $nom, $prenom, $num_tel, $poste): int
-    {
-        $request = "UPDATE `$this->table` SET nom = :nom, prenom = :prenom, num_tel = :num_tel, poste = :poste WHERE id = :id";
-        $state = $this->connexion->prepare($request);
-        $state->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $state->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-        $state->bindParam(':num_tel', $num_tel, PDO::PARAM_STR);
-        $state->bindParam(':poste', $poste, PDO::PARAM_STR);
-        $state->bindParam(':id', $id, PDO::PARAM_INT);
-        $state->execute();
-        return $state->rowCount();
     }*/
+  
+    public function alterEntry($nom, $prenom, $num_tel, $poste, $id): int
+    {
+      
+        // --------- F F F F F F F -------------
+
+        $request= "UPDATE `$this->table` SET  nom = '$nom' , prenom = '$prenom', num_tel = '$num_tel', poste = '$poste' WHERE id = $id";
+        echo $request;
+        $nbligne= $this->connexion->exec($request);           
+        // $test = $this->connexion->exec("UPDATE `$this->table` SET  nom = $nom, prenom = $prenom, num_tel = $num_tel, poste = $poste WHERE id = $id");
+        // return $test;
+        return $nbligne;
+
+        // ------------- O O O O O --------------
+        
+        // $request = "UPDATE `$this->table` SET  nom = ':nom', prenom = ':prenom', num_tel = ':num_tel', poste = ':poste', WHERE id = :id";
+        // $request= "UPDATE `$this->table` SET  nom = '$nom' , prenom = '$prenom', num_tel = '$num_tel', poste = '$poste' WHERE id = $id";
+        // $state = $this->connexion->prepare($request);
+        // $state->bindParam(':nom', $nom, PDO::PARAM_STR);
+        // $state->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        // $state->bindParam(':num_tel', $num_tel, PDO::PARAM_STR);
+        // $state->bindParam(':poste', $poste, PDO::PARAM_STR);
+        // $state->bindParam(':id', $id, PDO::PARAM_INT);
+        // $state->execute();
+        // return $state->rowCount();
+        
+      
+    }
 
     //// REGEX ////
     public function validateNomPrenom($input)

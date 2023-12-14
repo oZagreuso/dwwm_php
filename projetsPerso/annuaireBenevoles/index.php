@@ -23,8 +23,8 @@
         <div>
         <?php 
           
-             include "models/Benevoles.php";
-
+             include "./models/Benevoles.php";
+       
             $table = new Benevoles('bénévoles');
             echo $table->setTable();
 
@@ -55,20 +55,7 @@
                     echo "-- Erreur saisie --";
                 }
             
-             }
-
-             if (isset($_POST['alterNom']))
-             {
-                $nom = $_POST['nom'];
-
-                if ($table->validateNomPrenom($nom))
-                {
-                    echo $table->alterNom($id, $nom);
-                    echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
-                }
-     
-               
-             }
+             }             
 
         ?>
         </div>
@@ -87,6 +74,7 @@
                 <input type="text" id="poste" name="poste">
                 <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
             </div>
+            </form>
             
     </main>
 </body>
