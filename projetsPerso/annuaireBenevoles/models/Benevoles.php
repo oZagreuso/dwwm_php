@@ -114,7 +114,7 @@ class Benevoles
         // --------- F F F F F F F -------------
 
         $request= "UPDATE `$this->table` SET  nom = '$nom' , prenom = '$prenom', num_tel = '$num_tel', poste = '$poste' WHERE id = $id";
-        echo $request;
+        //echo $request;
         $nbligne= $this->connexion->exec($request);           
         // $test = $this->connexion->exec("UPDATE `$this->table` SET  nom = $nom, prenom = $prenom, num_tel = $num_tel, poste = $poste WHERE id = $id");
         // return $test;

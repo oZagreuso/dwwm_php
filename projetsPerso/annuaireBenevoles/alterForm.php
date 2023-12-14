@@ -15,9 +15,6 @@
         </div>
 
       
-
-             </body>
-             </html>
      <?php
             include "models/Benevoles.php";
     
@@ -32,7 +29,7 @@
                 $num_tel = $line['num_tel'];
                 $poste = $line['poste'];
                 $id = $_GET['id']; 
-                echo $nom . $prenom . $num_tel . $poste;
+                //echo $nom . $prenom . $num_tel . $poste;
                     
 
                if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['num_tel']) && isset($_POST['poste'])) 
@@ -49,6 +46,7 @@
                 }
                }
                 ?>
+                <section class="updateForm">
                 <form action="<?php  echo $_SERVER['PHP_SELF']."?id=".$id ; ?> " method="POST">
                 <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
                     <label for="nom">Nom</label>
@@ -60,8 +58,9 @@
                     <label for="poste">Poste</label>
                     <input type="text" id="poste" name="poste" value="<?php echo (!empty($line["poste"])? $line["poste"] : "non renseigné")  ?>">
                     <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
-                </div>
+                </div>                
                 </form>
+                </section>
             <?php
              }
            ?>
