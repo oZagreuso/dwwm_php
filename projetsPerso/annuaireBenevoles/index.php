@@ -24,7 +24,8 @@
         <?php 
           
              include "./models/Benevoles.php";
-       
+            // require_once('models/autoload.php');
+
             $table = new Benevoles('bénévoles');
             echo $table->setTable();
 
