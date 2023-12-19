@@ -48,7 +48,11 @@ class Benevoles
   
             foreach ($line as $key => $value) 
             {
-              $myString .= "<td>" . $value . "</td>"; 
+                if ($key != 'benev_mdp')
+                {
+                    $myString .= "<td>" . $value . "</td>"; 
+                }
+             
             }            
              // modifier en GET
              $myString .= "<td><a href='./alterForm.php?id=" . $myData[$i]['id'] . "' target='_blank' class='btn btn-secondary' name='updateLine'>Modifier</a>";
@@ -131,9 +135,33 @@ class Benevoles
         // $state->bindParam(':poste', $poste, PDO::PARAM_STR);
         // $state->bindParam(':id', $id, PDO::PARAM_INT);
         // $state->execute();
-        // return $state->rowCount();
-        
+        // return $state->rowCount();        
       
+    }
+
+    function loginVolonteer(string $_login, string $_mdp) : bool
+    {
+        $loginValid = false;
+        $request = 'SELECT * FROM bénévoles WHERE nom =:lastName';
+        $connect = Connexion::getInstance();
+        $state = $connect->prepare($request);
+        $state->bindParam(":lastName", $_login, PDO::PARAM_STR);
+        $state->execute();
+        $nblines = $state->rowCount();
+
+        if ($nblines >0)
+        {
+            $line = $state->fetch();
+            if (password_verify($_mdp, $line['password']) == true)
+            {
+                $_SESSION['nom'] = $line['nom'];
+                $loginValid =  true;
+            }
+        }
+    else{
+        $loginValid = false;
+    }
+    return $loginValid;
     }
 
     //// REGEX ////

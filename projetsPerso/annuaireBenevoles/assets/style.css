@@ -5,12 +5,19 @@ section {
    
 }
 
+body {
+    background-color: rgb(153, 197, 200);
+}
+
 .addVolonteer {
     background-color: rgb(153, 197, 200);
+    padding-bottom: 30px;
 }
 
 .alterVolonteer {
     background-color: rgb(153, 197, 200);
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .title {
@@ -25,6 +32,34 @@ h1 {
 h2 {
     font-family: Marker Felt, fantasy; 
     font-weight:300;
+    margin-left: 20px;
   
 }
+.identification {
+  
+    background-color: rgb(153, 197, 200);
+    
+   
+}
+
+.bodyID {
+    background-color: rgb(168, 184, 184);
+}
+
+.legendID {
+    margin-left: 20px;
+    font-weight:300;
+    font-family: Marker Felt, fantasy; 
+}
+
+#formID {
+    background-color: rgb(209, 231, 221);
+}
+
+.alterBody {
+    background-color: rgb(168, 184, 184);
+}
+
+
+
 

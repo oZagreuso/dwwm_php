@@ -9,7 +9,7 @@
 </head>
 
 
-<body>
+<body class="alterBody">
         <div class="alterVolonteer">
             <h2>Modifier un bénévole</h2>
         </div>
@@ -17,6 +17,7 @@
       
      <?php
             include "models/Benevoles.php";
+            session_start();
     
 
             if (isset($_GET['id']) && $_GET['id'] > 0)
@@ -46,7 +47,7 @@
                 }
                }
                 ?>
-                <section class="updateForm">
+                <!-- <section class="updateForm"> -->
                 <form action="<?php  echo $_SERVER['PHP_SELF']."?id=".$id ; ?> " method="POST">
                 <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
                     <label for="nom">Nom</label>
@@ -57,10 +58,12 @@
                     <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire" value="<?php echo (!empty($line["num_tel"])? $line["num_tel"] : "non renseigné")  ?>">
                     <label for="poste">Poste</label>
                     <input type="text" id="poste" name="poste" value="<?php echo (!empty($line["poste"])? $line["poste"] : "non renseigné")  ?>">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" name="password" placeholder="Obligatoire"  value="<?php echo (!empty($line["benev_mdp"])? $line["benev_mdp"] : "non renseigné")  ?>">
                     <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
                 </div>                
                 </form>
-                </section>
+                <!-- </section> -->
             <?php
              }
            ?>
