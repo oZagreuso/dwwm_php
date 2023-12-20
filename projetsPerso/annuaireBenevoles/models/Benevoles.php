@@ -16,12 +16,22 @@ class Benevoles
     protected function searchInDatabase():array
     {
         $database = [];
-        $request = "SELECT * FROM " . $this->table;
+        $request = "SELECT id, nom, prenom, num_tel FROM " . $this->table;
         $state = $this->connexion->prepare($request);
         $state->execute();
         $database = $state->fetchAll();   
         return $database;
     }
+/*
+    protected function searchPass():array
+    {
+        $database = [];
+        $request = "SELECT pass FROM " . $this->table;
+        $state = $this->connexion->prepare($request);
+        $state->execute();
+        $database = $state->fetchAll();   
+        return $database;
+    }*/
 
     public function setTable():string
     {
@@ -36,7 +46,7 @@ class Benevoles
             $myString .= "<th>" . $key . "</th>";
      
         }
-        $myString .= "<td>Modifier</td><td>Supprimer</td></tr></thead><tbody>";
+        $myString .= "<td></td><td></td></tr></thead><tbody>";
 
 
         for ($i=0; $i < count($myData); $i++)
@@ -48,7 +58,7 @@ class Benevoles
   
             foreach ($line as $key => $value) 
             {
-                if ($key != 'benev_mdp')
+                if ($key != 'pass')
                 {
                     $myString .= "<td>" . $value . "</td>"; 
                 }
@@ -139,20 +149,20 @@ class Benevoles
       
     }
 
-    function loginVolonteer(string $_login, string $_mdp) : bool
+    function loginVolonteer(string $_nom, string $_pass) : bool
     {
         $loginValid = false;
-        $request = 'SELECT * FROM bénévoles WHERE nom =:lastName';
-        $connect = Connexion::getInstance();
-        $state = $connect->prepare($request);
-        $state->bindParam(":lastName", $_login, PDO::PARAM_STR);
+        $request = 'SELECT * FROM bénévoles WHERE nom = :nom, pass = :pass';
+        $state = $this->connexion->prepare($request);
+        $state->bindParam(":nom", $_nom, PDO::PARAM_STR);
+        $state->bindParam(":pass", $_pass, PDO::PARAM_STR);
         $state->execute();
         $nblines = $state->rowCount();
 
         if ($nblines >0)
         {
             $line = $state->fetch();
-            if (password_verify($_mdp, $line['benev_mdp']) == true)
+            if (password_verify($_pass, $line['pass']) == true)
             {
                 $_SESSION['nom'] = $line['nom'];
                 $loginValid =  true;
@@ -191,4 +201,3 @@ class Benevoles
 
 
  
-
