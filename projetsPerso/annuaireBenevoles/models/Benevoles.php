@@ -152,7 +152,7 @@ class Benevoles
         if ($nblines >0)
         {
             $line = $state->fetch();
-            if (password_verify($_mdp, $line['password']) == true)
+            if (password_verify($_mdp, $line['benev_mdp']) == true)
             {
                 $_SESSION['nom'] = $line['nom'];
                 $loginValid =  true;

@@ -20,6 +20,13 @@ body {
     padding-bottom: 30px;
 }
 
+.inscription {
+    background-color: rgb(153, 197, 200);
+    margin-left: 20px;
+    font-weight:300;
+    font-family: Marker Felt, fantasy; 
+}
+
 .title {
     margin-top: 60px;
 

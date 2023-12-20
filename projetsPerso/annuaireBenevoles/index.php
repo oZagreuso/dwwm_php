@@ -74,6 +74,8 @@
                 <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire">
                 <label for="poste">Poste</label>
                 <input type="text" id="poste" name="poste">
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" placeholder="Obligatoire">
                 <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
             </div>
             </form>

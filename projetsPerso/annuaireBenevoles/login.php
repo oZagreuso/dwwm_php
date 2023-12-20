@@ -35,5 +35,24 @@
                 </fieldset>
             </form>
         </div>
+        
+        <!-- <div class="identification">
+            <form action="<?php /* $_SERVER['PHP_SELF']; */?>" method="POST" enctype="<multipart/form-data">
+            <legend class="legendID">Inscription</legend>
+            <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Obligatoire">
+                <label for="prenom" >Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Obligatoire">
+                <label for="num_tel">Numéro de téléphone</label>
+                <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire">
+                <label for="poste">Poste</label>
+                <input type="text" id="poste" name="poste">
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" placeholder="Obligatoire">
+                <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
+            </div>            
+        </div> -->
+
     </main>
 </body>
