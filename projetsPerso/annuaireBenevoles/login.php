@@ -11,7 +11,7 @@
 
 
 <body class="bodyID">
-    <?php   require 'models/Autoloader.php'; Autoloader::register(); ?>
+    <?php require "./vendor/autoload.php"; use App\models\Benevoles; ?>
     <main>
         <section>
         <div class="title">

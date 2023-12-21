@@ -1,16 +1,18 @@
 <?php
 
-Autoloader::register();
+namespace App\models;
+
+use App\models\Connexion as ModelsConnexion;
 
 class Benevoles
 {
     private string $table;
-    private PDO $connexion;
+    private \PDO $connexion;
 
     public function __construct(string $_table)
     {
         $this->table = $_table;
-        $this->connexion = Connexion::getInstance();
+        $this->connexion = ModelsConnexion::getInstance();
     }
 
     protected function searchInDatabase():array
@@ -85,7 +87,7 @@ class Benevoles
             
         $request = "DELETE FROM `$this->table` WHERE id = :id";
         $state = $this->connexion->prepare($request);
-        $state->bindParam(':id', $id, PDO::PARAM_INT);
+        $state->bindParam(':id', $id, \PDO::PARAM_INT);
         $state->execute();
         return $state->rowCount();    
     }
@@ -94,10 +96,10 @@ class Benevoles
     {
         $request = "INSERT INTO `$this->table` (nom, prenom, num_tel, poste) VALUES (:nom, :prenom, :num_tel, :poste)";
         $state = $this->connexion->prepare($request);
-        $state->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $state->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-        $state->bindParam(':num_tel', $num_tel, PDO::PARAM_STR);
-        $state->bindParam(':poste', $poste, PDO::PARAM_STR);
+        $state->bindParam(':nom', $nom, \PDO::PARAM_STR);
+        $state->bindParam(':prenom', $prenom, \PDO::PARAM_STR);
+        $state->bindParam(':num_tel', $num_tel, \PDO::PARAM_STR);
+        $state->bindParam(':poste', $poste, \PDO::PARAM_STR);
         $state->execute();
         return $state->rowCount();
     }
@@ -154,8 +156,8 @@ class Benevoles
         $loginValid = false;
         $request = 'SELECT * FROM bénévoles WHERE nom = :nom, pass = :pass';
         $state = $this->connexion->prepare($request);
-        $state->bindParam(":nom", $_nom, PDO::PARAM_STR);
-        $state->bindParam(":pass", $_pass, PDO::PARAM_STR);
+        $state->bindParam(":nom", $_nom, \PDO::PARAM_STR);
+        $state->bindParam(":pass", $_pass, \PDO::PARAM_STR);
         $state->execute();
         $nblines = $state->rowCount();
 

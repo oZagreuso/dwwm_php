@@ -16,8 +16,9 @@
 
       
      <?php
-            require 'models/Autoloader.php';
-            Autoloader::register();
+            
+            use App\models\Benevoles;
+            require "./vendor/autoload.php";
             session_start();
     
 

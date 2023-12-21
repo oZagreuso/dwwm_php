@@ -10,7 +10,8 @@
 
 
 
-<body>
+<body class="bodyID">
+    <?php   require 'models/Autoloader.php'; Autoloader::register(); ?>
     <main>
         <section>
         <div class="title">
@@ -20,37 +21,14 @@
             <image src="./logo/crm_logo.png" alt="logo du CRM";>
         </div>
         </section>
-        <div>
-        <?php 
-          
-             //include "./models/Benevoles.php";
-
-            use App\models\Benevoles;
-            require "./vendor/autoload.php";
-
-             session_start();
-            // require_once('models/autoload.php');
-
+        <div class="identification">
+        <?php /*var_dump($_POST['nom']);
             $table = new Benevoles('bénévoles');
-            echo $table->setTable();
-
-            if (isset($_POST['deleteLine'])) 
+            if ((isset($_POST['nom'], $_POST['pass'])))
             {
-                $id = $_POST['deleteLine'];
-                echo $table->deleteEntry(intval($id));
-                echo "<div class='alert alert-success'>-- Delete Successed --</div>"  ;
-                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
-            }
-           
-            if (isset($_POST['validate'])) 
-            {
-                // Récupération des données du formulaire
                 $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                $num_tel = $_POST['num_tel'];
-                $poste = $_POST['poste'];
-
-                if ($table->validateNomPrenom($nom) &&  $table->validateNomPrenom($prenom) && $table->validateNumTel($num_tel) && $table->numTelLengthMax($num_tel) && $table->numTelLengthMin($num_tel))
+                $pass =  $_POST['pass'];
+                if ($table->validateNomPrenom($nom) )
                 {
                     echo $table->addEntry($nom, $prenom, $num_tel, $poste);
                     echo "<div class='alert alert-success'>-- Ajout réussi --</div>";
@@ -60,15 +38,30 @@
                 {
                     echo "-- Erreur saisie --";
                 }
-            
-             }             
-
-        ?>
+            } 
+            if ($table->loginVolonteer($_POST['nom'],  $_POST['pass']) == true)
+            {
+                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
+            }; */
+        ?> 
+            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="<multipart/form-data">
+           
+                <fieldset>
+                    <legend class="legendID">Identification</legend>
+                    <div id="formID" class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
+                        <label>Nom</label>
+                        <input type="text" name="nom" id="nom">
+                        <label>Password</label>
+                        <input type="password" name="pass" id="pass" maxlength="30">
+                        <input type="submit" value="valider"  class="btn btn-outline-success" name="validation" id="validation">                    
+                    </div>
+                </fieldset>
+            </form>
         </div>
-        <div class="addVolonteer">
-            <h2>Ajouter un bénévole</h1>
-        </div>
-            <form action="<?php  echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        
+        <!-- <div class="identification">
+            <form action="<?php /* $_SERVER['PHP_SELF']; */?>" method="POST" enctype="<multipart/form-data">
+            <legend class="legendID">Inscription</legend>
             <div class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" placeholder="Obligatoire">
@@ -78,12 +71,11 @@
                 <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire">
                 <label for="poste">Poste</label>
                 <input type="text" id="poste" name="poste">
-                <label for="pass">Password</label>
-                <input type="text" id="pass" name="pass" placeholder="Obligatoire">
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" placeholder="Obligatoire">
                 <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
-            </div>
-            </form>
-            
+            </div>            
+        </div> -->
+
     </main>
 </body>
-</html>
