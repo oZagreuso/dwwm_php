@@ -11,7 +11,7 @@
 
 
 <body class="bodyID">
-    <?php   require_once "models/Benevoles.php"; session_start(); ?>
+    <?php   require 'models/Autoloader.php'; Autoloader::register(); ?>
     <main>
         <section>
         <div class="title">
@@ -22,7 +22,7 @@
         </div>
         </section>
         <div class="identification">
-        <?php var_dump($_POST['nom']);/*
+        <?php /*var_dump($_POST['nom']);
             $table = new Benevoles('bénévoles');
             if ((isset($_POST['nom'], $_POST['pass'])))
             {

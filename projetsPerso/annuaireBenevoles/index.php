@@ -23,7 +23,10 @@
         <div>
         <?php 
           
-             include "./models/Benevoles.php";
+            require 'models/Autoloader.php';
+            Autoloader::register();
+          
+             //include "./models/Benevoles.php";
              session_start();
             // require_once('models/autoload.php');
 

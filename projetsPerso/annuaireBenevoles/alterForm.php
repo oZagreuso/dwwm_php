@@ -16,7 +16,8 @@
 
       
      <?php
-            include "models/Benevoles.php";
+            require 'models/Autoloader.php';
+            Autoloader::register();
             session_start();
     
 

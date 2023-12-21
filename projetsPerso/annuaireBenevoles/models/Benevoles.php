@@ -1,6 +1,6 @@
 <?php
 
-require './models/Connexion.php';
+Autoloader::register();
 
 class Benevoles
 {
