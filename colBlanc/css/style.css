@@ -163,3 +163,8 @@ div#menu {
 .pair {
     background-color: #FFFFFF;
 }
+
+input {
+    display: flex;
+    flex-direction: row;
+}
