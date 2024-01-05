@@ -54,26 +54,30 @@
     
     <main>
       <section class="form"> 
-        <form action ="<?php  echo $_SERVER['PHP_SELF']; ?>" method="POST">
-          <div class="departement">
-            <label for="departement">Choisissez votre département</label>
-            <select id="departement" name="departement">
-          </div>
-          <div class="etablissement">
-            <label for="etablissement">Sélectionnez votre type d'établissement</label>            
-            <input type="checkbox" id="TPE" name="TPE">
-            <label for="TPE">TPE</label>
-            <input type="checkbox" id="PME" name="PME">
-            <label for="PME">PME</label>
-            <input type="checkbox" id="grdeEntr" name="grdeEntr">
-            <label for="grdeEntr">GRANDE ENTREPRISE</label>
-            <input type="checkbox" id="colTer" name="colTer">
-            <label for="colTer">COLLECTIVITES TER</label>
-            <input type="checkbox" id="assoc" name="assoc">
-            <label for="assoc">ASSOCIATION</label>
-            <input type="checkbox" id="autres" name="autres">
-            <label for="autres">AUTRES </label>
-          </div>
+      
+          
+         
+          <h1 style="text-align: center">Formulaire de recherche d'emploi ou de stage</h1>
+          <form name="selection" action ="<?php  echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+             
+          
+            <select name="dept" id="dept">
+            <option value="">choisir un département</option>
+            <?php 
+            use App\models\Connexion;
+            require "./vendor/autoload.php";
+            $connect = Connexion::getinstance();
+            $request = "SELECT id_dep, name FROM departements WHERE dep_actif=1"; 
+            $state = $connect->prepare($request);
+            $state->execute();
+            while($obj = $state->fetch())
+            {
+               echo '<option value="'. $obj->id_dep .'">' . $obj->name . '</option>';
+            }
+            ?>
+            </select>
+
+          
           <div class="submit">
               <button type="submit">Valider</button>
           </div>
@@ -86,14 +90,18 @@
 
 
   ?>
+            </form>
    <aside>
 
   </aside>
       </section>
     </main>
 
+    <?php
 
 
+
+    ?>
 <footer>
   Copyright
 </footer> 

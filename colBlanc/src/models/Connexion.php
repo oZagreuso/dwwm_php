@@ -23,7 +23,14 @@ class Connexion
             
             try 
             {
-                self::$connexion = new \PDO('mysql:host=' . self::$host . ';dbname=' . self::$base, self::$user, self::$pass, array(\PDO::ATTR_DEFAULT_FETCH_MODE =>\PDO::FETCH_OBJ, \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                self::$connexion = new \PDO('mysql:host=' . self::$host . ';dbname=' . self::$base, self::$user, self::$pass, 
+                array(
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // En cas d'echec on attrapera l'exception et on en saura plus
+                    \PDO::ATTR_CASE => \PDO::CASE_LOWER, // Majuscules transformées en minuscules quand on récupére les données
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, 
+                    \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+                    )
+                );
 
             } catch (\PDOException $e)
             {
