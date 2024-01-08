@@ -168,3 +168,7 @@ input {
     display: flex;
     flex-direction: row;
 }
+
+fieldset {
+    width: 40%;
+}

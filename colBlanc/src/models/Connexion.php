@@ -15,7 +15,7 @@ class Connexion
     
     }
 
-    public static final function getInstance()
+    static public function getInstance()
     {
         
         if (is_null(self::$connexion))

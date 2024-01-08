@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Entrainement Centre de Readaptation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" media="screen" href="../css/style.css">
 </head>	
 
@@ -12,7 +13,7 @@
             <header>
               <div id="header">
                 <img src="../contenu/header.jpg" width="980" height="176" alt="colblanc entete"> 
-                </div>
+              </div>
             </header>
          
 
@@ -61,7 +62,7 @@
           <form name="selection" action ="<?php  echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
              
           
-            <select name="dept" id="dept">
+            <select name="dep" id="dep">
             <option value="">choisir un département</option>
             <?php 
             use App\models\Connexion;
@@ -83,47 +84,85 @@
             
             }
             ?>
-            </select>     
-         
-        </form>
-          <div class="print">
-            <button type="submit" onclick="window.print()">Imprimer</button>
-          </div>
+            </select>  
             
             <br>
             <hr>
             <br>
             <fieldset>
               <legend>Sélectionner le type d'établissement</legend>
-              <div id="recherche">
+              <div>
                 <input type="checkbox" name="choix[]" id="TPE" value="TPE">
-                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
-                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
-                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
-                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
-                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <label for="TPE">TPE</label>
               </div>
+              <div>
+              <input type="checkbox" name="choix[]" id="PME" value="PME">
+                <label for="PME">PME</label>
+              </div>
+              <div>
+              <input type="checkbox" name="choix[]" id="GE" value="GE">
+                <label for="GE">GRANDE ENTREPRISE</label>
+              </div>
+              <div>
+              <input type="checkbox" name="choix[]" id="TER" value="TER">
+                <label for="TER">COLLECTIVITE TER</label>
+              </div>
+              <div>
+              <input type="checkbox" name="choix[]" id="ASSO" value="ASSO">
+                <label for="ASSO">ASSOCIATION</label>
+              </div>
+              <div>
+              <input type="checkbox" name="choix[]" id="AUTRES" value="AUTRES">
+                <label for="AUTRES">AUTRES (secteur public)</label>
+              </div>       
+               
             </fieldset>
                   
        
             <input type="submit" value="Valider" name="validation" id="validation">
-
-  <?php
-
-
-  ?>
             </form>
-   <aside>
-
-  </aside>
-      </section>
-    </main>
-
-    <?php
+  
+    
+  <?php
+var_dump($_POST["choix"]);
 
 
+require "./vendor/autoload.php";
+$connect = Connexion::getInstance();
+$request = "SELECT nom_etab, type_etab, nom_resp, adresse, ville, cp, Telephone, email FROM institutions WHERE depart = :dep" ;
+$state = $connect->prepare($request);
+$state->bindParam(":dep", $_POST["dep"], \PDO::PARAM_STR);
+$state->execute();
+$data = [];
+$nbEntr = 0;
+echo "<caption> Resultat de votre recherche </caption><table class='table table-stripped table-hover'>";
+echo "<thead><tr><th> Nom Etablissement </th><th> Type Etablissement </th><th> Nom Responsable </th><th> Adresse </th><th> Ville </th><th> Code Postal </th><th> Téléphone </th><th> Email </th></tr></thead><tbody>";
 
-    ?>
+while ($obj = $state->fetch()) 
+{  
+  echo "<tr>";
+  $nbEntr++;
+  array_push($data, $obj);
+  foreach ($obj as $key =>$value)
+  {
+    echo '<td>' . $obj->$key . '</td>';
+
+
+  }
+  echo "</tr>";
+}
+
+ echo "</tbody></table>";
+
+var_dump($data);
+
+  ?>   
+            <aside>
+
+</aside>        
+  </section>
+</main>
+
 <footer>
   Copyright
 </footer> 
