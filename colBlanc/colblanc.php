@@ -72,20 +72,42 @@
             $state->execute();
             while($obj = $state->fetch())
             {
-               echo '<option value="'. $obj->id_dep .'">' . $obj->name . '</option>';
+              if(isset($_POST["dep"]) && !empty($_POST["dep"]) && $obj->id_dep == $_POST["dep"])
+              {
+                echo '<option value="'. $obj->id_dep .'" selected="true" >' . $obj->name . '</option>';
+              }
+              else 
+              {
+                echo '<option value="'. $obj->id_dep .'" >' . $obj->name . '</option>';
+              }
+            
             }
             ?>
-            </select>
-
-          
-          <div class="submit">
-              <button type="submit">Valider</button>
-          </div>
+            </select>     
+         
         </form>
           <div class="print">
             <button type="submit" onclick="window.print()">Imprimer</button>
           </div>
-      <h1 style=" text-align:center">Votre travail ici</h1>
+            
+            <br>
+            <hr>
+            <br>
+            <fieldset>
+              <legend>Sélectionner le type d'établissement</legend>
+              <div id="recherche">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+                <input type="checkbox" name="choix[]" id="TPE" value="TPE">
+              </div>
+            </fieldset>
+                  
+       
+            <input type="submit" value="Valider" name="validation" id="validation">
+
   <?php
 
 
