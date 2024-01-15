@@ -11,7 +11,7 @@
 
 
 <body class="bodyID">
-    <?php   require 'models/Autoloader.php'; Autoloader::register(); ?>
+    <?php   require 'models/Autoloader.php';  ?>
     <main>
         <section>
         <div class="title">

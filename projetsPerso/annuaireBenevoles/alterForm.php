@@ -60,9 +60,9 @@
                     <input type="text" id="numero_tel" name="num_tel" placeholder="Obligatoire" value="<?php echo (!empty($line["num_tel"])? $line["num_tel"] : "non renseigné")  ?>">
                     <label for="poste">Poste</label>
                     <input type="text" id="poste" name="poste" value="<?php echo (!empty($line["poste"])? $line["poste"] : "non renseigné")  ?>">
-                    <label for="password">Password</label>
+                    <!-- <label for="password">Password</label>
                     <input type="text" id="password" name="password" placeholder="Obligatoire"  value="<?php echo (!empty($line["benev_mdp"])? $line["benev_mdp"] : "non renseigné")  ?>">
-                    <input type="submit" class="btn btn-outline-success" value="valider" name="validate">
+                    <input type="submit" class="btn btn-outline-success" value="valider" name="validate"> -->
                 </div>                
                 </form>
                 <!-- </section> -->

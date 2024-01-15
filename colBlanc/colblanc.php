@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Entrainement Centre de Readaptation</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" media="screen" href="../css/style.css">
+  <link rel="stylesheet" media="screen" href="./css/style.css">
 </head>	
 
 <body>
@@ -12,7 +12,7 @@
         <div id="page">
             <header>
               <div id="header">
-                <img src="../contenu/header.jpg" width="980" height="176" alt="colblanc entete"> 
+                <img src="./contenu/header.jpg" width="980" height="176" alt="colblanc entete"> 
               </div>
             </header>
          
@@ -119,23 +119,39 @@
             </fieldset>
                   
        
-            <input type="submit" value="Valider" name="validation" id="validation">
+            <input class="btn btn-outline-secondary" type="submit" value="Valider" name="validation" id="validation">
             </form>
   
     
   <?php
-var_dump($_POST["choix"]);
+// var_dump($_POST["choix"]);
 
 
 require "./vendor/autoload.php";
+
+$endRequest = "";
+
+if (isset($_POST['choix']) && count($_POST['choix']) > 0)
+{
+    $list = "";
+    for ($i = 0; $i < count($_POST['choix']); $i++)
+    {
+      $list .= ", " . $_POST['choix'][$i] . "'";
+    }
+    $list = substr($list, 1);
+
+  $endRequest = " AND type_etab IN (" . $list . ")";
+}
+
+
 $connect = Connexion::getInstance();
-$request = "SELECT nom_etab, type_etab, nom_resp, adresse, ville, cp, Telephone, email FROM institutions WHERE depart = :dep" ;
+$request = "SELECT nom_etab, type_etab, nom_resp, adresse, ville, cp, Telephone, email FROM institutions WHERE depart =:dep " . $endRequest;
 $state = $connect->prepare($request);
-$state->bindParam(":dep", $_POST["dep"], \PDO::PARAM_STR);
+$state->bindParam(':dep', $_POST["dep"], PDO::PARAM_STR);
 $state->execute();
 $data = [];
 $nbEntr = 0;
-echo "<caption> Resultat de votre recherche </caption><table class='table table-stripped table-hover'>";
+echo "<caption> Resultat de votre recherche </caption><table class='table table-primary table-stripped table-hover'>";
 echo "<thead><tr><th> Nom Etablissement </th><th> Type Etablissement </th><th> Nom Responsable </th><th> Adresse </th><th> Ville </th><th> Code Postal </th><th> Téléphone </th><th> Email </th></tr></thead><tbody>";
 
 while ($obj = $state->fetch()) 
@@ -145,7 +161,7 @@ while ($obj = $state->fetch())
   array_push($data, $obj);
   foreach ($obj as $key =>$value)
   {
-    echo '<td>' . $obj->$key . '</td>';
+    echo '<td>' . utf8_decode($obj->$key) . '</td>';
 
 
   }
@@ -153,8 +169,7 @@ while ($obj = $state->fetch())
 }
 
  echo "</tbody></table>";
-
-var_dump($data);
+// var_dump($data); 
 
   ?>   
             <aside>
