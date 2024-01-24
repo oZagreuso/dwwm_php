@@ -11,7 +11,20 @@
 
 
 <body class="bodyID">
-    <?php require "./vendor/autoload.php"; use App\models\Benevoles; ?>
+    <?php  session_start();
+    var_dump($_POST['mail']);
+    require "./vendor/autoload.php"; use App\models\Benevoles;
+            $table = new Benevoles('bénévoles');
+            if (isset($_POST['mail']))
+            {
+                if ($table->loginVolonteer($_POST['mail'],  $_POST['pass']) == true)
+                {
+                    // echo $_SESSION['mail'];
+                    // echo $_SESSION['level'];
+                    header('Location: http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php');
+                }
+            } 
+          ;   ?>
     <main>
         <section>
         <div class="title">
@@ -22,35 +35,15 @@
         </div>
         </section>
         <div class="identification">
-        <?php /*var_dump($_POST['nom']);
-            $table = new Benevoles('bénévoles');
-            if ((isset($_POST['nom'], $_POST['pass'])))
-            {
-                $nom = $_POST['nom'];
-                $pass =  $_POST['pass'];
-                if ($table->validateNomPrenom($nom) )
-                {
-                    echo $table->addEntry($nom, $prenom, $num_tel, $poste);
-                    echo "<div class='alert alert-success'>-- Ajout réussi --</div>";
-                    echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
-                }
-                else
-                {
-                    echo "-- Erreur saisie --";
-                }
-            } 
-            if ($table->loginVolonteer($_POST['nom'],  $_POST['pass']) == true)
-            {
-                echo "<script>window.location.href='http://localhost/dwwm_php/projetsPerso/annuaireBenevoles/index.php'</script>";
-            }; */
+        <?php 
         ?> 
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="<multipart/form-data">
            
                 <fieldset>
                     <legend class="legendID">Identification</legend>
                     <div id="formID" class="p-3 text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
-                        <label>Nom</label>
-                        <input type="text" name="nom" id="nom">
+                        <label>Mail</label>
+                        <input type="text" name="mail" id="mail">
                         <label>Password</label>
                         <input type="password" name="pass" id="pass" maxlength="30">
                         <input type="submit" value="valider"  class="btn btn-outline-success" name="validation" id="validation">                    

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>Annuaire des Bénévoles du Foyer du CRM</title>
 </head>
-
+<?php  session_start();?>
 
 
 <body>
@@ -24,15 +24,23 @@
         <?php 
           
              //include "./models/Benevoles.php";
-
             use App\models\Benevoles;
             require "./vendor/autoload.php";
 
-             session_start();
+             
             // require_once('models/autoload.php');
 
             $table = new Benevoles('bénévoles');
-            echo $table->setTable();
+
+            if ($_SESSION['level'] == 1)
+            {
+                echo $table->setTable();
+            }
+            else {
+                echo $table->setLowLevelTable();
+            }
+            
+            
 
             if (isset($_POST['deleteLine'])) 
             {

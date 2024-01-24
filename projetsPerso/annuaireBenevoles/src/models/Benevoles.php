@@ -18,7 +18,7 @@ class Benevoles
     protected function searchInDatabase():array
     {
         $database = [];
-        $request = "SELECT id, nom, prenom, num_tel FROM " . $this->table;
+        $request = "SELECT id, nom, prenom, num_tel, poste, mail FROM " . $this->table;
         $state = $this->connexion->prepare($request);
         $state->execute();
         $database = $state->fetchAll();   
@@ -79,7 +79,40 @@ class Benevoles
 
         $myString .= "</tbody></table>";
         return $myString;
+    }
+    public function setLowLevelTable() : string
+    {
+        $myString = '<table class="table table-success table-striped table-hover"><thead><tr>';
+        $myData = $this->searchInDatabase();
 
+        foreach ($myData[0] as $key =>$value)
+        {
+        
+            $myString .= "<th>" . $key . "</th>";
+     
+        }
+        $myString .= "<td></td><td></td></tr></thead><tbody>";
+
+
+        for ($i=0; $i < count($myData); $i++)
+        {
+            $line = $myData[$i];
+            $myString .= "<tr>";
+
+
+  
+            foreach ($line as $key => $value) 
+            {
+                if ($key != 'pass')
+                {
+                    $myString .= "<td>" . $value . "</td>"; 
+                }
+             
+            } 
+    }
+
+    $myString .= "</tbody></table>";
+        return $myString;
     }
 
     public function deleteEntry($id): int
@@ -94,12 +127,13 @@ class Benevoles
 
     public function addEntry($nom, $prenom, $num_tel, $poste): int
     {
-        $request = "INSERT INTO `$this->table` (nom, prenom, num_tel, poste) VALUES (:nom, :prenom, :num_tel, :poste)";
+        $request = "INSERT INTO `$this->table` (nom, prenom, num_tel, poste, mail) VALUES (:nom, :prenom, :num_tel, :poste, :mail)";
         $state = $this->connexion->prepare($request);
         $state->bindParam(':nom', $nom, \PDO::PARAM_STR);
         $state->bindParam(':prenom', $prenom, \PDO::PARAM_STR);
         $state->bindParam(':num_tel', $num_tel, \PDO::PARAM_STR);
         $state->bindParam(':poste', $poste, \PDO::PARAM_STR);
+        $state->bindParam(':mail', $poste, \PDO::PARAM_STR);
         $state->execute();
         return $state->rowCount();
     }
@@ -124,12 +158,12 @@ class Benevoles
         return $state->rowCount();
     }*/
   
-    public function alterEntry($nom, $prenom, $num_tel, $poste, $id): int
+    public function alterEntry($nom, $prenom, $num_tel, $poste, $mail, $id): int
     {
       
         // --------- F F F F F F F -------------
 
-        $request= "UPDATE `$this->table` SET  nom = '$nom' , prenom = '$prenom', num_tel = '$num_tel', poste = '$poste' WHERE id = $id";
+        $request= "UPDATE `$this->table` SET  nom = '$nom' , prenom = '$prenom', num_tel = '$num_tel', poste = '$poste', mail='$mail' WHERE id = $id";
         //echo $request;
         $nbligne= $this->connexion->exec($request);           
         // $test = $this->connexion->exec("UPDATE `$this->table` SET  nom = $nom, prenom = $prenom, num_tel = $num_tel, poste = $poste WHERE id = $id");
@@ -151,13 +185,12 @@ class Benevoles
       
     }
 
-    function loginVolonteer(string $_nom, string $_pass) : bool
+    function loginVolonteer(string $_mail, string $_pass) : bool
     {
         $loginValid = false;
-        $request = 'SELECT * FROM bénévoles WHERE nom = :nom, pass = :pass';
+        $request = 'SELECT * FROM bénévoles WHERE mail = :mail';
         $state = $this->connexion->prepare($request);
-        $state->bindParam(":nom", $_nom, \PDO::PARAM_STR);
-        $state->bindParam(":pass", $_pass, \PDO::PARAM_STR);
+        $state->bindParam(":mail", $_mail, \PDO::PARAM_STR);
         $state->execute();
         $nblines = $state->rowCount();
 
@@ -166,7 +199,7 @@ class Benevoles
             $line = $state->fetch();
             if (password_verify($_pass, $line['pass']) == true)
             {
-                $_SESSION['nom'] = $line['nom'];
+                $_SESSION['mail'] = $line['mail']; $_SESSION['level'] = $line['LEVEL'];
                 $loginValid =  true;
             }
         }

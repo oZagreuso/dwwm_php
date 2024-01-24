@@ -80,8 +80,7 @@
               else 
               {
                 echo '<option value="'. $obj->id_dep .'" >' . $obj->name . '</option>';
-              }
-            
+              }            
             }
             ?>
             </select>  

@@ -1,0 +1,20 @@
+:root {
+    --base-bg: #2D3142;
+    --base-link: #BFC0C0;
+    --base-txt: #EF8354;
+    --base-btn: #4F5D75;
+    --base-border: #4F5D75;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+}
