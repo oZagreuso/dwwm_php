@@ -15,25 +15,25 @@ class Benevole
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 120, nullable: true)]
+    #[ORM\Column(length: 120, nullable: false)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 120, nullable: true)]
+    #[ORM\Column(length: 120, nullable: false)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 15, nullable: false)]
     private ?string $num_tel = null;
 
     #[ORM\Column(length: 120, nullable: true)]
     private ?string $poste = null;
 
-    #[ORM\Column(length: 150, nullable: true)]
+    #[ORM\Column(length: 150, nullable: false)]
     private ?string $mail = null;
 
     #[ORM\Column(length: 400, nullable: true)]
     private ?string $pass = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: false)]
     private ?int $level = null;
 
     public function getId(): ?int
